@@ -33,7 +33,7 @@ export default function SimpleContainer() {
     setInputtodo("");
   };
   React.useEffect(() => {
-    const storage = JSON.parse(localStorage.getItem("todos"));
+    const storage = JSON.parse(localStorage.getItem("todos")) ?? [];
     setTodos(storage);
   }, []);
 
