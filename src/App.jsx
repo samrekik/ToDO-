@@ -3,7 +3,9 @@ import Button from "@mui/material/Button";
 import ToDoList from "./components/toDoList";
 import { v4 as uuidv4 } from "uuid";
 import { useState } from "react";
-import { TodosContext } from "./contexts/toDosContext";
+import TodosProvider from "./contexts/toDosContext";
+
+import { ToastProvider } from "./contexts/ToastContext";
 function App() {
   const initodos = [
     {
@@ -26,12 +28,15 @@ function App() {
     },
   ];
   const [todos, setTodos] = useState(initodos);
+
   return (
-    <TodosContext.Provider value={{ todos, setTodos }}>
-      <div className="flex justify-center bg-black items-center h-screen">
-        <ToDoList />
-      </div>
-    </TodosContext.Provider>
+    <TodosProvider>
+      <ToastProvider>
+        <div className="flex justify-center bg-black items-center h-screen">
+          <ToDoList />
+        </div>
+      </ToastProvider>
+    </TodosProvider>
   );
 }
 
